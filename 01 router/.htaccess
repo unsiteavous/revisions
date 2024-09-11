@@ -1,0 +1,9 @@
+# Si le module de réécriture d'apache est activé :
+<IfModule mod_rewrite.c>
+  # On l'allume :
+  RewriteEngine on
+
+  # Rediriger toutes les urls qui iraient ailleurs que dans le dossier public vers le dossier public :
+  RewriteCond %{THE_REQUEST} !/public [NC]
+  RewriteRule ^(.*)$ /correction/public/$1 [R=301,NE]
+</IfModule>
