@@ -3,16 +3,36 @@ namespace Services;
 
 class Routing
 {
-  public static function routeComposee(): array
+  public static function routeComposee()
   {
     $route = $_SERVER['REDIRECT_URL'];
-    $routeComposee = ltrim($route, HOME_URL);
-    $routeComposee = rtrim($routeComposee, '/');
-    $routeComposee = explode('/', $routeComposee);
 
-    for ($i=sizeof($routeComposee); $i < 4; $i++) { 
-        $routeComposee[$i] = null;
+    $route = ltrim($route, HOME_URL);
+    $route = rtrim($route, '/');
+    $route = explode('/', $route);
+
+    for($i=sizeof($route); $i < 4 ; $i ++) {
+      $route[$i] = null;
     }
-    return $routeComposee;
+
+    return $route;
+  }
+
+  public static function getMethode() {
+    $methode = $_SERVER['REQUEST_METHOD'];
+
+    if($methode === "POST" && isset($_POST['_method']) && !empty($_POST['_method'])){
+      switch ($_POST['_method']) {
+        case 'DELETE':
+          $methode = "DELETE";
+          break;
+
+        default:
+          //
+          break;
+      }
+    }
+
+    return $methode;
   }
 }

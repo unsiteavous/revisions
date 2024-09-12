@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  # Tout ce qui se termine par ".quelque chose" est testé directement dans le dossier /public. Si rien ne sort, ça passe en erreur 404.
+  # Toutes les URLs du site sont sans ".quelque chose".
+  # On précise ce qu'on autorise, afin d'être sûr de ne pas laisser de faille.
+
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteCond %{REQUEST_URI} !\.(css|js|jpg|png|jpeg|webp|svg|gif|pdf|eot|otf|woff|woff2|ttf)$ [NC]
+  RewriteRule ^(.*)$  /index.php [L]
+
+</IfModule>
+
+## Retour d'erreur :
+ErrorDocument 404 /index.php

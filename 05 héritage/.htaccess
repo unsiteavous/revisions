@@ -5,5 +5,5 @@
 
   # Rediriger toutes les urls qui iraient ailleurs que dans le dossier public vers le dossier public :
   RewriteCond %{THE_REQUEST} !/public [NC]
-  RewriteRule ^(.*)$ /public/$1 [R=301,NE]
+  RewriteRule ^(.*)$ /correction/public/$1 [R=301,NE]
 </IfModule>
